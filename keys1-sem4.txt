@@ -1,0 +1,52 @@
+#include <iostream>
+
+// Базовый класс
+class Base {
+public:
+    Base() {
+        std::cout << "Конструктор базового класса" << std::endl;
+    }
+
+    virtual ~Base() {
+        std::cout << "Деструктор базового класса" << std::endl;
+    }
+
+    virtual void Method() {
+        std::cout << "Метод базового класса" << std::endl;
+    }
+};
+
+// Производный класс
+class Derived : public Base {
+public:
+    Derived() {
+        std::cout << "Конструктор производного класса" << std::endl;
+    }
+
+    ~Derived() override {
+        std::cout << "Деструктор производного класса" << std::endl;
+    }
+
+    void Method() override {
+        // Вызываем метод базового класса, если необходимо
+        // Base::Method();
+
+        std::cout << "Метод производного класса" << std::endl;
+    }
+};
+
+int main() {
+    Base* base = new Base();
+    Base* derived = new Derived();
+
+    std::cout << "Вызов метода базового класса:" << std::endl;
+    base->Method();
+
+    std::cout << "Вызов метода производного класса:" << std::endl;
+    derived->Method();
+
+    delete base;
+    delete derived;
+
+    return 0;
+}
